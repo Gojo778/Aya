@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For AYA</title>
+
+  <style>
+    :root{
+      --bg1:#2a0f1e;
+      --bg2:#3a1628;
+      --card:#ffffff14;
+      --text:#fff5fa;
+      --muted:#f2c9d8;
+      --accent:#ff9dbb;
+      --accent2:#ffc1d6;
+      --border:#ffffff26;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(900px 700px at 15% 20%, #ff9dbb33, transparent 55%),
+        radial-gradient(700px 600px at 85% 30%, #ffc1d633, transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:auto;
+      padding:28px 18px 60px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom:22px;
+    }
+
+    .badge{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#ffffff10;
+      backdrop-filter: blur(10px);
+      box-shadow:var(--shadow);
+      font-size:13px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+    }
+
+    @media(max-width:850px){
+      .hero{grid-template-columns:1fr}
+    }
+
+    .card{
+      padding:22px;
+      border-radius:var(--radius);
+      background:#ffffff10;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(12px);
+      position:relative;
+    }
+
+    h1{
+      font-size:clamp(30px,4vw,52px);
+      line-height:1.05;
+      margin:0 0 12px;
+    }
+
+    .lead{
+      font-size:16px;
+      line-height:1.7;
+      color:var(--muted);
+      max-width:60ch;
+    }
+
+    .pillrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:18px 0;
+    }
+
+    .pill{
+      padding:9px 12px;
+      border-radius:999px;
+      font-size:13px;
+      border:1px solid var(--border);
+      background:#00000014;
+    }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    button{
+      border:0;
+      border-radius:14px;
+      padding:12px 16px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#3a1223;
+    }
+
+    .secondary{
+      background:#ffffff14;
+      color:var(--text);
+      border:1px solid var(--border);
+    }
+
+    .heartBox{
+      display:grid;
+      place-items:center;
+      padding:18px;
+    }
+
+    .heart{
+      width:220px;
+      aspect-ratio:1/1;
+      position:relative;
+      animation:float 3.5s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
+    .heart:before,.heart:after{
+      content:"";
+      position:absolute;
+      width:50%;
+      height:70%;
+      left:25%;
+      top:18%;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      border-radius:999px 999px 0 0;
+      transform:rotate(-45deg);
+      transform-origin:0 100%;
+    }
+
+    .heart:after{
+      transform:rotate(45deg);
+      transform-origin:100% 100%;
+    }
+
+    .quote{
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      place-items:center;
+      background:rgba(0,0,0,.55);
+      z-index:999;
+    }
+
+    .modal.show{display:grid}
+
+    .modalCard{
+      max-width:700px;
+      padding:20px;
+      border-radius:var(--radius);
+      background:#3a1628;
+      border:1px solid var(--border);
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="badge">To: AYA</div>
+    <div class="badge">From: Your Name</div>
+  </header>
+
+  <main class="hero">
+    <section class="card">
+      <h1>
+        I just wanted you to know<br>
+        <span style="color:var(--accent)">I love you.</span>
+      </h1>
+
+      <p class="lead">
+        I don’t know how to say this any other way, so I’ll say it simply.
+        You are special to me. The way you talk, the way you smile,
+        and the way you exist in my life all mean more than you probably realize.
+      </p>
+
+      <div class="pillrow">
+        <span class="pill">You matter to me</span>
+        <span class="pill">I think about you</span>
+        <span class="pill">I care deeply</span>
+        <span class="pill">I’m here</span>
+      </div>
+
+      <div class="cta">
+        <button class="primary" onclick="openModal()">Open your message ❤</button>
+        <button class="secondary" onclick="sendHearts()">Send love ♡</button>
+      </div>
+    </section>
+
+    <aside class="card heartBox">
+      <div class="heart"></div>
+      <p style="margin-top:10px;color:var(--muted);text-align:center">
+        Some feelings are meant to be felt, not explained.
+      </p>
+    </aside>
+  </main>
+
+  <section class="card" style="margin-top:18px">
+    <p class="quote">
+      “You didn’t just cross my mind. You stayed there.”
+    </p>
+    <p style="margin-top:8px;color:var(--muted)">— Your Name</p>
+  </section>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modalCard">
+    <p style="font-size:22px;line-height:1.6">
+      I love you so much baby.
+    </p>
+    <button class="secondary" onclick="closeModal()" style="margin-top:14px">
+      Close
+    </button>
+  </div>
+</div>
+
+<script>
+  function openModal(){
+    document.getElementById("modal").classList.add("show");
+  }
+  function closeModal(){
+    document.getElementById("modal").classList.remove("show");
+  }
+  function sendHearts(){
+    alert("❤❤❤");
+  }
+</script>
+
+</body>
+</html>
